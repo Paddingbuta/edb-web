@@ -1,6 +1,4 @@
-# buta
-
-> A Vue.js project
+# edb-web
 
 ## Build Setup
 
