@@ -25,7 +25,9 @@
             :class="{ 'odd-tr': (index + 1) % 2 === 1, 'even-tr': (index + 1) % 2 === 0 }"
           >
             <td>{{ item.cell1 }}</td>
-            <td>{{ item.cell2 }}</td>
+            <td>
+              <router-link to="/details">{{ item.cell2 }}</router-link>
+            </td>
             <td>{{ item.cell3 }}</td>
             <td>{{ item.cell4 }}</td>
             <td>{{ item.cell5 }}</td>
@@ -50,12 +52,13 @@
 </template>
 
 <script>
+
 export default {
-  name: "HelloWorld",
+  name: "Main",
   data() {
     return {
       msg: "Welcome to CodeSecLab",
-      rows: Array.from({ length: 15 }, (_, index) => ({
+      rows: Array.from({ length: 16 }, (_, index) => ({
         cell1: `2024-1-10`,
         cell2: `OpenPLC WebServer 3 - Denial of Service`,
         cell3: `DoS`,
@@ -64,13 +67,14 @@ export default {
       })),
     };
   },
+
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .bottom-blank{
-  height: 50px;
+  height: 60px;
 }
 .odd-tr {
   background-color: #f2f2f2;
@@ -100,6 +104,7 @@ export default {
 
 #search {
   height: 30px;
+  font-size: 16px;
 }
 
 .search-box {
