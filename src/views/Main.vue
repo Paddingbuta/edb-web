@@ -3,8 +3,15 @@
     <!--<h1>{{ msg }}</h1> -->
 
     <div class="search-box">
-      <label for="search">Search:</label>
-      <input type="text" id="search" placeholder="Type to search..." />
+      <input type="text" placeholder="  Type to search..." />
+      <label for="search"> Search by: </label>
+      <select id="search">
+        <option value="cve-id">CVE-ID</option>
+        <option value="title">Title</option>
+        <option value="author">Author</option>
+        <option value="software">Software</option>
+        <option value="platform">Platform</option>
+      </select>
     </div>
 
     <div>
@@ -26,7 +33,7 @@
           >
             <td>{{ item.cell1 }}</td>
             <td>
-              <router-link to="/details">{{ item.cell2 }}</router-link>
+              <router-link class="link" to="/details">{{ item.cell2 }}</router-link>
             </td>
             <td>{{ item.cell3 }}</td>
             <td>{{ item.cell4 }}</td>
@@ -67,40 +74,65 @@ export default {
       })),
     };
   },
-
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.bottom-blank{
-  height: 60px;
+.bottom-blank {
+  height: 10px;
 }
 .odd-tr {
   background-color: #f2f2f2;
 }
 .even-tr {
-  background-color: #ffffff; 
+  background-color: #ffffff;
+}
+td .link {
+  color: #001f3f;
+  text-decoration: none;
 }
 
-/* 页数切换器容器样式 */
+td .link:hover {
+  color: darkred;
+  text-decoration: underline;
+}
 .pagination {
-  display: flex;
+  margin-top: 30px;
   list-style: none;
   padding: 0;
-  margin: 20px;
-  float: right;
+  display: flex;
+  justify-content: center;
 }
-
-/* 切换按钮共用样式 */
 .pagination li {
-  margin-right: 5px;
+  display: inline-block;
+  margin: 0 5px;
+}
+.pagination a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+  padding: 8px 12px;
+}
+.pagination a:hover {
+  background-color: #d0d0d0;
+  border-radius: 50%;
+}
+.pagination .current a {
+  background-color: orange;
+  color: white;
 }
 
-/* 当前页样式 */
-.pagination li.current {
-  font-weight: bold;
+input {
+  height: 40px;
+  width: 600px;
+  font-size: 16px;
+  margin-right: 15px;
 }
+tr {
+  height: 40px;
+}
+/* 页数切换器容器样式 */
 
 #search {
   height: 30px;
@@ -110,10 +142,11 @@ export default {
 .search-box {
   top: 0;
   right: 0;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-right: 10px;
-  float: right;
-  padding: 20px 0;
+  margin-bottom: 20px;
+  padding: 20px 20px;
+  font-size: 20px;
 }
 table {
   border-collapse: collapse;
@@ -134,5 +167,6 @@ th {
   margin-top: 0px;
   margin: 0;
   text-align: center;
+  font-size: 16px;
 }
 </style>

@@ -4,40 +4,71 @@
 
     <div class="container">
       <div class="box">
-        <h2 class="top-text">EDB-ID: <h3>51747</h3></h2>
-        <h2 class="top-text">CVE: <h3>2023-32707</h3></h2>
+        <h2 class="top-text">
+          EDB-ID:
+          <h3>51747</h3>
+        </h2>
+        <h2 class="top-text">
+          CVE:
+          <h3>2023-32707</h3>
+        </h2>
+        <hr />
         <div class="divider"></div>
-        <div class="tp tp1"><h2 class="bottom-text">EDB Verified: <img src="../assets/false.png"></h2></div>
+        <div class="tp tp1">
+          <h2 class="bottom-text">
+            EDB Verified:
+            <div class="pics"><img src="../assets/false.png" /></div>
+          </h2>
+        </div>
       </div>
       <div class="box">
-        <h2 class="top-text">Author: <h3>REDWAY SECURITY</h3></h2>
-        <h2 class="top-text">Type: <h3>WEBAPPS</h3></h2>
+        <h2 class="top-text">
+          Author:
+          <h3>REDWAY SECURITY</h3>
+        </h2>
+        <h2 class="top-text">
+          Type:
+          <h3>WEBAPPS</h3>
+        </h2>
+        <hr />
         <div class="divider"></div>
-        <div class="tp tp2"><h2 class="bottom-text">Exploit: <img src="../assets/download.png"></h2></div>
+        <div class="tp tp2">
+          <h2 class="bottom-text">
+            Exploit:
+            <div class="pics"><img src="../assets/download.png" /></div>
+          </h2>
+        </div>
       </div>
       <div class="box">
-        <h2 class="top-text">Platform: <h3>MULTIPLE</h3></h2>
-        <h2 class="top-text">Date: <h3>2023-10-09</h3></h2>
+        <h2 class="top-text">
+          Platform:
+          <h3>MULTIPLE</h3>
+        </h2>
+        <h2 class="top-text">
+          Date:
+          <h3>2023-10-09</h3>
+        </h2>
+        <hr />
         <div class="divider"></div>
         <h2 class="bottom-text">Vulnerable App:</h2>
       </div>
     </div>
     <div class="bottom-blank"></div>
     <div class="code">
-    <!-- Python 代码 -->
-    <pre>
+      <!-- Python 代码 -->
+      <pre>
       <code class="language-python">
         {{ pythonCode }}
       </code>
     </pre>
-  </div>
+    </div>
 
     <div class="bottom-blank"></div>
   </div>
 </template>
 
 <script>
-import 'prismjs/themes/prism.css';
+import "prismjs/themes/prism.css";
 
 export default {
   name: "Details",
@@ -81,23 +112,23 @@ help='Force exploit')`,
 </script>
 
 <style>
-.tp{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.tp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 h2 {
-  display: inline-block!important;
-  margin-right: 20px;
-  margin: 20px 0;
+  display: inline-block !important;
+  margin: 10px 10px;
+  height: 30px;
 }
-h3{
-    display: inline-block!important;
-    font-size: 20px;
-    color: #922d4f;
+h3 {
+  display: inline-block !important;
+  font-size: 20px;
+  color: #922d4f;
 }
-.language-python{
-    padding: 0px 20px;
+.language-python {
+  padding: 0px 20px;
 }
 .tp1 img {
   width: 6%;
@@ -107,13 +138,13 @@ h3{
   width: 10%;
   height: 10%;
 }
-.code{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.code {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-pre{
-    background-color: #f5f0ee;
+pre {
+  background-color: #f5f0ee;
 }
 pre code {
   display: block;
@@ -133,39 +164,38 @@ h1 {
   margin: 50px 0px;
 }
 .bottom-blank {
-  height: 60px;
+  height: 30px;
 }
 .container {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .box {
-  width: 450px; /* 设置方框宽度 */
-  height: 300px; /* 设置方框高度 */
-  display: flex; /* 使用 Flex 布局 */
-  flex-direction: column; /* 主轴方向为列布局 */
-  align-items: center; /* 垂直居中 */
-  background-color: #f0f0f0; /* 设置背景颜色 */
-  margin-right: 40px; /* 设置右侧间距 */
-  border: 1px solid #ccc; /* 设置边框 */
+  width: 450px;
+  height: 230px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f0f0f0;
+  margin-right: 40px;
+  border: 1px solid #ccc;
 }
 
-/* 分割线样式 */
 .divider {
   width: 100%;
   height: 1px;
   background-color: #ccc;
-  margin: 10px 0; /* 上下间距 */
+  margin: 10px 0;
 }
 
 /* 上方文字样式 */
 .top-text {
-  margin-bottom: 10px; /* 下方间距 */
+  margin-bottom: 10px;
 }
 
 /* 下方文字样式 */
 .bottom-text {
-  margin-top: 10px; /* 上方间距 */
+  margin-top: 10px;
 }
 </style>
