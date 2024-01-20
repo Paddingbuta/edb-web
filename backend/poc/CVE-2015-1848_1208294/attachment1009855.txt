@@ -1,0 +1,22 @@
+--- pcs-0.9.137/pcsd/pcsd.rb.secure_fix        2015-03-30 13:48:50.209887370 -0500
++++ pcs-0.9.137/pcsd/pcsd.rb   2015-03-30 13:50:47.321660377 -0500
+@@ -31,7 +31,9 @@ end
+ 
+ use Rack::Session::Cookie,
+   :expire_after => 60 * 60,
+-  :secret => secret
++  :secret => secret,
++  :secure => true, # only send over HTTPS
++  :httponly => true # don't provide to javascript
+ 
+ #use Rack::SSL
+ 
+@@ -45,8 +47,6 @@ also_reload 'pcs.rb'
+ also_reload 'auth.rb'
+ also_reload 'wizard.rb'
+ 
+-enable :sessions
+-
+ before do
+   if request.path != '/login' and not request.path == "/logout" and not request.path == '/remote/auth'
+     protected! 

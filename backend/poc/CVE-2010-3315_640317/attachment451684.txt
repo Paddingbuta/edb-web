@@ -1,0 +1,193 @@
+  Subversion servers up to 1.6.12 (inclusive) making use of the
+  "SVNPathAuthz short_circuit" mod_dav_svn configuration setting have
+  a bug which may allow users to write and/or read portions of the
+  repository to which they are not intended to have access.
+
+Summary:
+========
+
+  Subversion's WebDAV server module, mod_dav_svn, can interact with
+  the Apache HTTP Server and related modules in a variety of ways to
+  implement various authentication and authorization policies for
+  Subversion repositories hosted via that service.  One such way
+  involves setting the value of the mod_dav_svn configuration
+  directive SVNPathAuthz to "short_circuit", a non-default value which
+  causes mod_dav_svn to bypass Apache's internal authorization
+  subsystem and to instead query Subversion's built-in authorization
+  logic directly.  Unfortunately, a bug in the implementation of this
+  feature (which exists for the purpose of improving the performance
+  of Subversion's authorization checks) causes it to ignore access
+  rules which are scope-limited to named repositories.  Depending on
+  the configuration of the access file which Subversion consults to
+  determine the repository's access policy, this can have the effect
+  of inadvertently exposing more (or less) information to a user than
+  intended.
+
+Known vulnerable:
+=================
+
+  Subversion servers 1.5.0 through 1.5.7 (inclusive)
+  Subversion servers 1.6.0 through 1.6.12 (inclusive)
+
+Known fixed:
+============
+
+  Subversion 1.6.13
+  Subversion 1.5.8
+
+Details:
+========
+
+  Assume that there exists an Apache-hosted Subversion service,
+  configured to require valid authentication of all users, and
+  employing the following access configuration file for the purpose of
+  authorizing access to specific portions of hosted repositories:
+
+     # All users have read permission on all repositories in their
+     # entirety unless otherwise noted.
+     [/]
+     * = r
+
+     # Hide the '/pokernight' directory of the 'office' repository
+     # from the Boss Man (pointy).
+     [office:/pokernight]
+     pointy = 
+
+  Now assume that the user "pointy" is attempting to browse or
+  checkout the root of the "office" repository.
+
+  By default (or when the SVNPathAuthz directive is set to "on" in the
+  Apache configuration), Subversion will notice both of the rulesets
+  in the previous configuration file -- the first of which applies to
+  all repositories configured to use this access file to govern
+  authorization, the second of which applies only to the repository
+  named "office".  In such a situation, when the user "pointy"
+  attempts to access the "office" repository, Subversion will grant
+  him or her access to the root of the repository (per the first
+  ruleset), but then deny access to the '/pokernight' top-level
+  subdirectory (per the second ruleset).
+
+  These access determinations happen because Subversion constructs and
+  issues Apache subrequests to test the access privileges for each and
+  every item in the repository that it considers exposing to the user
+  "pointy".  If any module in the Apache authorization stack denies
+  access to a given path checked in this fashion, that path and its
+  contents are hidden from "pointy".
+
+  This can be a somewhat expensive operation to perform though, so
+  Subversion administrators who know that the only item in the Apache
+  authorization stack for their Subversion repository locations is
+  Subversion itself may set "SVNPathAuthz short_circuit" in their
+  Apache configuration.  This setting causes Subversion to avoid the
+  Apache subrequest framework altogether and instead query its own
+  access rules directly.  Unfortunately, for servers affected by the
+  bug described herein, Subversion would ignore the second ruleset in
+  the previous example because it has a repository prefix on it -- the
+  "office:" portion of the section's name.  The result would be that
+  the read access granted to "pointy" at the root of the repository
+  would not be overridden for the '/pokernight' subtree, and user
+  "pointy" would indeed be able to view that subtree and its
+  contents.  Poker night at the office would be cancelled.  Or worse,
+  the Boss Man would want to join in, too.
+
+  Because the same mechanisms are used to govern write permissions,
+  too, this bug could also permit users to write to repository areas
+  that they shouldn't be allowed to write to.
+
+  Because the same mechanism can be used to grant additional
+  permissions (not merely take them away), this bug could also
+  disallow a user's access to portions of the repository that he or
+  she should be allowed to access.
+
+  Finally, because Subversion determines access rights for a
+  revision's metadata (log messages, author names, etc.) based on the
+  user's rights to the various files and directories modified in that
+  revision, this bug could grant improper write and/or read access to
+  revision metadata, too.
+
+Severity:
+=========
+
+  Medium.  An affected server with a particular configuration could
+  leak versioned file contents and metadata, directory metadata, and
+  revision metadata to underprivileged remote users or user classes.
+  Underprivileged remote users could modify repository contents, too,
+  though in the case of file and directory information, no lossage
+  could occur.  (Subversion is, after all, a version control system.)
+  Revision metadata could be silently modified or destroyed, depending
+  on whether the repository was configured to notify users about
+  changes to that information or otherwise keep external records of
+  those changes.
+
+Recommendations:
+================
+
+  We recommend that all users who employ the "SVNPathAuthz short_circuit"
+  configuration directive upgrade to Subversion 1.6.13 immediately.
+
+  Those who are unable or unwilling to upgrade at this time should
+  consider one or more of the following workarounds:
+
+  1.  Change the SVNPathAuthz configuration directive's value to "on".
+      This may negatively affect the performance of your Subversion
+      service, but will avoid the problematic logic.  You might need
+      to double-check the rest of your configuration to ensure that
+      taking this step will not inadvertently cause your Subversion
+      authorization checks to pass through extra authorization modules
+      which have thus far been effectively bypassed.
+
+  2.  Refactor your access files and surrounding Apache configuration
+      so that a given file's rules apply only to a single repository,
+      and then remove any and all repository prefixes from those files.
+      This will allow Subversion's rule matching logic to correctly
+      find all the sections which apply to each repository.  Using the
+      previous example, this would mean creating an access file which
+      governs authorization for the "office" repository only:
+ 
+         # All users have read permission on this repository in its
+         # entirety unless otherwise noted.
+         [/]
+         * = r
+
+         # Hide the '/pokernight' directory of the 'office' repository
+         # from the Boss Man (pointy).
+         [/pokernight]
+         pointy = 
+
+       ...and also creating similar files for each additional
+       repository previous governed by the original access file.
+  
+  New Subversion packages can be found at:
+  http://subversion.apache.org/packages.html
+
+References:
+===========
+
+  CVE-2010-3315
+
+Reported by:
+============
+
+  Kamesh Jayachandran, CollabNet, Inc.
+  C. Michael Pilato, CollabNet, Inc.
+
+Patches:
+========
+
+  The following patch applies to Subversion 1.5.x and 1.6.x.
+
+[[[
+Index: subversion/mod_dav_svn/authz.c
+===================================================================
+--- subversion/mod_dav_svn/authz.c	(revision 1001856)
++++ subversion/mod_dav_svn/authz.c	(working copy)
+@@ -59,7 +59,7 @@
+   allow_read_bypass = dav_svn__get_pathauthz_bypass(r);
+   if (allow_read_bypass != NULL)
+     {
+-      if (allow_read_bypass(r,path, repos->repo_name) == OK)
++      if (allow_read_bypass(r, path, repos->repo_basename) == OK)
+         return TRUE;
+       else
+         return FALSE;
+]]]

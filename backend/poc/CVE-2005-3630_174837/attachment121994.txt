@@ -1,0 +1,166 @@
+Index: adminserver/admserv/cfgstuff/admserv.conf
+===================================================================
+RCS file: /cvs/dirsec/adminserver/admserv/cfgstuff/admserv.conf,v
+retrieving revision 1.11
+diff -u -8 -r1.11 admserv.conf
+--- adminserver/admserv/cfgstuff/admserv.conf	19 Nov 2005 00:43:02 -0000	1.11
++++ adminserver/admserv/cfgstuff/admserv.conf	7 Dec 2005 19:41:49 -0000
+@@ -20,24 +20,63 @@
+ #
+ # To get the Admin Express working properly, add the following to 
+ # apache, either directly or thru an Include /path/to/this.conf
+ 
+ SetEnv NETSITE_ROOT %%%sroot%%%
+ SetEnv ADMSERV_ROOT %%%sroot%%%/admin-serv/config/
+ 
+ ADMCacheLifeTime 600
+-ADMServerVersionString "Fedora-Administrator/1.0"
++ADMServerVersionString "Fedora-Administrator/1.0.1"
+ 
+ ScriptAlias /clients/orgchart/bin/ "%%%sroot%%%/clients/orgchart/bin/"
+ ScriptAlias /clients/dsgw/bin/ "%%%sroot%%%/clients/dsgw/bin/"
+ ScriptAlias /bin/admin/admin/bin/ "%%%sroot%%%/bin/admin/admin/bin/"
+ ScriptAlias /dist/ "%%%sroot%%%/dist/"
+ ScriptAlias /manual/help/ %%%sroot%%%/manual/help/
+ 
++# all access is explicitly denied by default in httpd.conf
++# the following Directory directives turn on access for specific
++# directories
++<Directory "%%%sroot%%%/java/">
++    AllowOverride None
++    Options None
++    Order allow,deny
++    Allow from all
++</Directory>
++
++<Directory "%%%sroot%%%/manual/">
++    AllowOverride None
++    Options None
++    Order allow,deny
++    Allow from all
++</Directory>
++
++<Directory "%%%sroot%%%/clients/*/*html/">
++    AllowOverride None
++    Options None
++    Order allow,deny
++    Allow from all
++</Directory>
++
++<Directory "%%%sroot%%%/clients/dsgw/*config/">
++    AllowOverride None
++    Options None
++    Order allow,deny
++    Allow from all
++</Directory>
++
++<Directory "%%%sroot%%%/bin/admin/admin/icons/">
++    AllowOverride None
++    Options None
++    Order allow,deny
++    Allow from all
++</Directory>
++
++# enable access for CGI progs/scripts
+ <Directory "%%%sroot%%%/clients/orgchart/bin/">
+     AllowOverride None
+     Options None
+     Order allow,deny
+     Allow from all
+ </Directory>
+ 
+ <Directory "%%%sroot%%%/clients/dsgw/bin/">
+@@ -64,52 +103,62 @@
+ 
+ # Handle the initial login
+ <Location /admin-serv/authenticate>
+     SetHandler user-auth
+     AuthUserFile %%%sroot%%%/admin-serv/config/admpw
+     AuthType basic
+     AuthName "Admin Server"
+     Require valid-user
++    Order allow,deny
++    Allow from all
+ </Location>
+ 
+ # Handle Other Console tasks
+ <LocationMatch /*/[tT]asks/[Oo]peration/*>
+   AuthUserFile %%%sroot%%%/admin-serv/config/admpw
+   AuthType basic
+   AuthName "Admin Server"
+   Require valid-user
+   AdminSDK on
+   Options +ExecCGI
++  Order allow,deny
++  Allow from all
+ </LocationMatch>
+ 
+ # Handle Admin Express
+ <LocationMatch /*/[tT]asks/[Cc]onfiguration/*>
+   AuthUserFile %%%sroot%%%/admin-serv/config/admpw
+   AuthType basic
+   AuthName "Admin Server"
+   Require valid-user
+   AdminSDK on
+   NESCompatEnv on
+   Options +ExecCGI
++  Order allow,deny
++  Allow from all
+ </LocationMatch>
+ 
+ # Handle internal commands
+ <LocationMatch /admin-serv/commands/*>
+   AuthUserFile %%%sroot%%%/admin-serv/config/admpw
+   AuthType basic
+   AuthName "Admin Server"
+   Require valid-user
++  Order allow,deny
++  Allow from all
+ </LocationMatch>
+ 
+ # Handle Stop, Start, Restart, Instance Creation - invoke mod_restartd
+ # need to add instance creation because you may want to create an instance
+ # of DS on a low port, and instance creation starts the instance as well
+ <LocationMatch /*/[tT]asks/[Oo]peration/(?i:stop|start|restart|startconfigds|create)$>
+   AuthUserFile /home/rich/72srv/admin-serv/config/admpw
+   AuthType basic
+   AuthName "Admin Server"
+   Require valid-user
+ ## turn off the password pipe when using mod_restartd
+   AdminSDK off
+   Options +ExecCGI
+   RetainPerms on
++  Order allow,deny
++  Allow from all
+ </LocationMatch>
+Index: adminserver/admserv/cfgstuff/httpd.conf
+===================================================================
+RCS file: /cvs/dirsec/adminserver/admserv/cfgstuff/httpd.conf,v
+retrieving revision 1.6
+diff -u -8 -r1.6 httpd.conf
+--- adminserver/admserv/cfgstuff/httpd.conf	3 Nov 2005 23:20:49 -0000	1.6
++++ adminserver/admserv/cfgstuff/httpd.conf	7 Dec 2005 19:41:51 -0000
+@@ -243,19 +243,20 @@
+ # AllowOverride controls what directives may be placed in .htaccess files.
+ # It can be "All", "None", or any combination of the keywords:
+ #   Options FileInfo AuthConfig Limit
+ #
+     AllowOverride None
+ 
+ #
+ # Controls who can get stuff from this server.
+-#
+-    Order allow,deny
+-    Allow from all
++# By default, no one may access anything
++# Access must be explicitly granted in admserv.conf
++    Order deny,allow
++    Deny from all
+ 
+ </Directory>
+ 
+ #
+ # DirectoryIndex: sets the file that Apache will serve if a directory
+ # is requested.
+ #
+ # The index.html.var file (a type-map) is used to deliver content-

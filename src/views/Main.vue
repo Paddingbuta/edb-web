@@ -3,9 +3,9 @@
     <!--<h1>{{ msg }}</h1> -->
 
     <div class="search-box">
-      <input type="text" placeholder="  Type to search..." />
+      <input type="text" placeholder="Type to search..." v-model="inputValue" @keyup.enter="select" />
       <label for="search"> Search by: </label>
-      <select id="search">
+      <select id="search" v-model="selectedOption">
         <option value="cve-id">CVE-ID</option>
         <option value="title">Title</option>
         <option value="author">Author</option>
@@ -59,11 +59,13 @@
 </template>
 
 <script>
+import axios from 'axios'
 
 export default {
   name: "Main",
   data() {
     return {
+      inputValue: '',
       msg: "Welcome to CodeSecLab",
       rows: Array.from({ length: 16 }, (_, index) => ({
         cell1: `2024-1-10`,
@@ -72,7 +74,21 @@ export default {
         cell4: `Multiple`,
         cell5: `Kai Feng`,
       })),
+      selectedOption: 'cve-id',
     };
+  },
+  methods: {
+    select() {
+      console.log('new search');
+      const FPath = 'http://localhost:5000';
+      axios.post(FPath, {inputValue: this.inputValue, selectedOption: this.selectedOption})
+                    .then((res) => {
+                      console.log(res.data);
+                      //res为后端返回的查询数据
+                    })
+                    .catch((err) => {console.log(err)})
+      
+    },
   },
 };
 </script>

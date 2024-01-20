@@ -1,0 +1,29 @@
+diff -up sudo-1.8.6p7/src/ttyname.c.get_process_ttyname sudo-1.8.6p7/src/ttyname.c
+--- sudo-1.8.6p7/src/ttyname.c.get_process_ttyname	2013-02-25 20:46:09.000000000 +0100
++++ sudo-1.8.6p7/src/ttyname.c	2017-05-25 10:23:28.720850944 +0200
+@@ -171,6 +171,8 @@ static char *search_devs[] = {
+ 
+ static char *ignore_devs[] = {
+     "/dev/fd/",
++    "/dev/mqueue/",
++    "/dev/shm/",
+     "/dev/stdin",
+     "/dev/stdout",
+     "/dev/stderr",
+@@ -437,9 +439,13 @@ get_process_ttyname(void)
+ 	len = getline(&line, &linesize, fp);
+ 	fclose(fp);
+ 	if (len != -1) {
+-	    /* Field 7 is the tty dev (0 if no tty) */
+-	    char *cp = line;
+-	    int field = 1;
++	    /*
++	     * Field 7 is the tty dev (0 if no tty).
++	     * Since the process name at field 2 "(comm)" may include spaces,
++	     * start at the last ')' found.
++	     */
++	    char *cp = strrchr(line, ')');
++	    int field = 2;
+ 	    while (*cp != '\0') {
+ 		if (*cp++ == ' ') {
+ 		    if (++field == 7) {

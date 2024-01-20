@@ -1,0 +1,27 @@
+From c0308b700e3e0f0b6b1dc350e822b6218d080f1a Mon Sep 17 00:00:00 2001
+From: Alan Coopersmith <alan.coopersmith@oracle.com>
+Date: Sun, 26 Jan 2014 20:02:20 -0800
+Subject: [PATCH 16/33] xfixes: unvalidated length in
+ SProcXFixesSelectSelectionInput [CVE-2014-8102]
+
+Signed-off-by: Alan Coopersmith <alan.coopersmith@oracle.com>
+Reviewed-by: Peter Hutterer <peter.hutterer@who-t.net>
+---
+ xfixes/select.c |    1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/xfixes/select.c b/xfixes/select.c
+index c088ed3..e964d58 100644
+--- a/xfixes/select.c
++++ b/xfixes/select.c
+@@ -201,6 +201,7 @@ SProcXFixesSelectSelectionInput(ClientPtr client)
+ {
+     REQUEST(xXFixesSelectSelectionInputReq);
+ 
++    REQUEST_SIZE_MATCH(xXFixesSelectSelectionInputReq);
+     swaps(&stuff->length);
+     swapl(&stuff->window);
+     swapl(&stuff->selection);
+-- 
+1.7.9.2
+
