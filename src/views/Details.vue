@@ -3,54 +3,70 @@
     <h1>{{ msg }}</h1>
 
     <div class="container">
-      <div class="box">
-        <h2 class="top-text">
-          EDB-ID:
+      <div class="box3">
+        <h2 class="top-text ownid">
+          OWN-ID:
           <h3>51747</h3>
         </h2>
         <h2 class="top-text">
-          CVE:
+          CVE-ID:
           <h3>2023-32707</h3>
         </h2>
-        <hr />
-        <div class="divider"></div>
-        <div class="tp tp1">
-          <h2 class="bottom-text">
-            EDB Verified:
-            <div class="pics"><img src="../assets/false.png" /></div>
-          </h2>
-        </div>
+      </div>
+      <div class="box">
+        <h2 class="top-text">
+          Test Platform:
+          <h3>Linux</h3>
+        </h2>
+        <h2 class="top-text">
+          Software Version:
+          <h3>WEBAPPS</h3>
+        </h2>
+        <h2 class="top-text">
+          Tag: <h3>1/0</h3>  Code Language:
+          <h3>WEBAPPS</h3>
+        </h2>
       </div>
       <div class="box">
         <h2 class="top-text">
           Author:
-          <h3>REDWAY SECURITY</h3>
-        </h2>
-        <h2 class="top-text">
-          Type:
-          <h3>WEBAPPS</h3>
-        </h2>
-        <hr />
-        <div class="divider"></div>
-        <div class="tp tp2">
-          <h2 class="bottom-text">
-            Exploit:
-            <div class="pics"><img src="../assets/download.png" /></div>
-          </h2>
-        </div>
-      </div>
-      <div class="box">
-        <h2 class="top-text">
-          Platform:
           <h3>MULTIPLE</h3>
         </h2>
         <h2 class="top-text">
-          Date:
+          Source:
           <h3>2023-10-09</h3>
         </h2>
-        <hr />
-        <div class="divider"></div>
-        <h2 class="bottom-text">Vulnerable App:</h2>
+        <h2 class="top-text">
+          Time:
+          <h3>2023-10-09</h3>
+        </h2>
+      </div>
+    </div>
+    <div class="bottom-blank"></div>
+    <div class="container">
+      <div class="box2">
+        <h2 class="top-text">
+          Reference:
+          <h3>https://bugzilla-attachments.redhat.com/attachment.cgi?id=514052</h3>
+        </h2>
+      </div>
+    </div>
+    <div class="bottom-blank"></div>
+    <div class="container">
+      <div class="box2">
+        <h2 class="top-text">
+          Trigger Method:
+          <h3></h3>
+        </h2>
+      </div>
+    </div>
+    <div class="bottom-blank"></div>
+    <div class="container">
+      <div class="box2">
+        <h2 class="top-text">
+          Record:
+          <h3></h3>
+        </h2>
       </div>
     </div>
     <div class="bottom-blank"></div>
@@ -112,15 +128,13 @@ help='Force exploit')`,
 </script>
 
 <style>
-.tp {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 h2 {
   display: inline-block !important;
-  margin: 10px 10px;
+  margin: 20px 10px;
   height: 30px;
+}
+h2.ownid{
+  margin-top: 0px;
 }
 h3 {
   display: inline-block !important;
@@ -129,14 +143,6 @@ h3 {
 }
 .language-python {
   padding: 0px 20px;
-}
-.tp1 img {
-  width: 6%;
-  height: 6%;
-}
-.tp2 img {
-  width: 10%;
-  height: 10%;
 }
 .code {
   display: flex;
@@ -173,11 +179,35 @@ h1 {
 
 .box {
   width: 450px;
-  height: 230px;
+  height: 220px;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #f0f0f0;
+  margin-right: 40px;
+  border: 1px solid #ccc;
+}
+
+.box2 {
+  width: 1435px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f0f0f0;
+  margin-right: 40px;
+  border: 1px solid #ccc;
+}
+
+.box3 {
+  width: 450px;
+  height: 220px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f0f0f0;
+  
   margin-right: 40px;
   border: 1px solid #ccc;
 }
@@ -194,8 +224,4 @@ h1 {
   margin-bottom: 10px;
 }
 
-/* 下方文字样式 */
-.bottom-text {
-  margin-top: 10px;
-}
 </style>

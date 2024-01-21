@@ -38,11 +38,12 @@ def select():
 
     # 获取查询结果
     results = cursor.fetchall()
-
+    '''
     # 打印每一行数据
     for row in results:
         print(row)
-
+    '''
+    print(f"find {len(results)} result(s)")
     # 关闭游标
     cursor.close()
 

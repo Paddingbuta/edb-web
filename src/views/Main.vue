@@ -84,6 +84,7 @@ export default {
       axios.post(FPath, {inputValue: this.inputValue, selectedOption: this.selectedOption})
                     .then((res) => {
                       console.log(res.data);
+                      console.log(res.data.length);
                       //res为后端返回的查询数据
                     })
                     .catch((err) => {console.log(err)})
