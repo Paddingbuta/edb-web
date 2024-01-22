@@ -18,6 +18,10 @@ def select():
         select_str = "SELECT * FROM poc_test"
     elif selected_option == 'cve-id':
         select_str = "SELECT * FROM poc_test WHERE CVE_ID LIKE '%" + input_value +"%'"
+    elif selected_option == 'software':
+        select_str = "SELECT * FROM poc_test WHERE software_version LIKE '%" + input_value +"%'"
+    elif selected_option == 'platform':
+        select_str = "SELECT * FROM poc_test WHERE test_platform LIKE '%" + input_value +"%'"
     else: 
         select_str = "SELECT * FROM poc_test WHERE "+ selected_option+" LIKE '%" + input_value + "%'"
     

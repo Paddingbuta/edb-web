@@ -3,7 +3,10 @@
     <!--<h1>{{ msg }}</h1> -->
 
     <div class="search-box">
-      <input class="searchtext" type="text" placeholder="Type to search..." v-model="inputValue" @keyup.enter="select" />
+      <div class="search-container">
+        <img src="../assets/search.png" class="search-icon"></img>
+        <input class="searchtext" type="text" placeholder="Type to search..." v-model="inputValue" @keyup.enter="select" />
+      </div>
       <label for="search"> Search by: </label>
       <select id="search" v-model="selectedOption">
         <option value="cve-id">CVE-ID</option>
@@ -148,6 +151,21 @@ td .link:hover {
   color: darkred;
   text-decoration: underline;
 }
+.search-container {
+  position: relative;
+  display: inline-block;
+  
+}
+
+.search-icon {
+  width: 4%;
+  position: absolute;
+  left: 13px; /* 调整图标距离左侧的位置 */
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888; /* 设置图标颜色 */
+}
+
 .pagination {
   font-size: 22px;
   margin-top: 30px;
@@ -167,7 +185,6 @@ td .link:hover {
 }
 .pagination a:hover {
   color: darkred;
-  text-decoration: underline;
 }
 
 .searchtext {
@@ -176,13 +193,14 @@ td .link:hover {
   width: 600px;
   font-size: 20px;
   margin-right: 15px;
-  border-radius: 20px; /* 设置为足够大的值，根据需要调整 */
+  border-radius: 100px; /* 设置为足够大的值，根据需要调整 */
   padding: 10px; /* 可选：添加一些 padding 以增强样式 */
+  padding-left: 50px;
   outline: none; /* 可选：去除输入框的默认轮廓样式 */
   transition: background-color 0.3s ease; /* 添加过渡效果 */
 }
 .searchtext:focus {
-  border-color: #922d4f; /* 选中状态时的边框颜色，根据需要调整 */
+  border-color: #922d4f;
 }
 .searchtext:hover {
   background-color: #f0f0f0;
@@ -190,11 +208,19 @@ td .link:hover {
 .pagenum{
   height: 40px;
   width: 45px;
-  font-size: 16px;
+  font-size: 20px;
   display: flex;
   align-items: center;
   text-align: center;
   border-radius: 5px;
+  border: 2px solid #ccc;
+  transition: background-color 0.3s ease;
+}
+.pagenum:focus {
+  outline: 2px solid #922d4f;
+}
+.pagenum:hover {
+  background-color: #f0f0f0;
 }
 tr {
   height: 40px;
@@ -242,5 +268,8 @@ th {
   margin: 0;
   text-align: center;
   font-size: 16px;
+}
+#tableBody tr{
+  height: 60px;
 }
 </style>
