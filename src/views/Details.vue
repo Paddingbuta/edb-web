@@ -1,44 +1,44 @@
 <template>
   <div class="contents">
-    <h1>{{ msg }}</h1>
+    <h1>{{ item.title }}</h1>
 
     <div class="container">
       <div class="box3">
         <h2 class="top-text ownid">
           OWN-ID:
-          <h3>51747</h3>
+          <h3>{{item.own_ID}}</h3>
         </h2>
         <h2 class="top-text">
           CVE-ID:
-          <h3>2023-32707</h3>
+          <h3>{{item.CVE_ID}}</h3>
         </h2>
       </div>
       <div class="box">
         <h2 class="top-text">
           Test Platform:
-          <h3>Linux</h3>
+          <h3>{{item.test_platform}}</h3>
         </h2>
         <h2 class="top-text">
           Software Version:
-          <h3>WEBAPPS</h3>
+          <h3>{{item.software_version}}</h3>
         </h2>
         <h2 class="top-text">
-          Tag: <h3>1/0</h3>  Code Language:
-          <h3>WEBAPPS</h3>
+          Tag: <h3>{{item.tag}}</h3>  Code Language:
+          <h3>{{item.code_language}}</h3>
         </h2>
       </div>
       <div class="box">
         <h2 class="top-text">
           Author:
-          <h3>MULTIPLE</h3>
+          <h3>{{item.author}}</h3>
         </h2>
         <h2 class="top-text">
           Source:
-          <h3>2023-10-09</h3>
+          <h3>{{item.source}}</h3>
         </h2>
         <h2 class="top-text">
           Time:
-          <h3>2023-10-09</h3>
+          <h3>{{item.time}}</h3>
         </h2>
       </div>
     </div>
@@ -47,7 +47,7 @@
       <div class="box2">
         <h2 class="top-text">
           Reference:
-          <h3>https://bugzilla-attachments.redhat.com/attachment.cgi?id=514052</h3>
+          <h3>{{item.reference}}</h3>
         </h2>
       </div>
     </div>
@@ -56,7 +56,7 @@
       <div class="box2">
         <h2 class="top-text">
           Trigger Method:
-          <h3></h3>
+          <h3>{{item.trigger_method}}</h3>
         </h2>
       </div>
     </div>
@@ -65,7 +65,7 @@
       <div class="box2">
         <h2 class="top-text">
           Record:
-          <h3></h3>
+          <h3>{{item.record}}</h3>
         </h2>
       </div>
     </div>
@@ -74,7 +74,7 @@
       <!-- Python 代码 -->
       <pre>
       <code class="language-python">
-        {{ pythonCode }}
+        {{item.other_information}}
       </code>
     </pre>
     </div>
@@ -88,8 +88,13 @@ import "prismjs/themes/prism.css";
 
 export default {
   name: "Details",
+  created() {
+    this.item = this.$route.params.item;
+    this.item.other_information = JSON.parse(this.item.other_information);
+  },
   data() {
     return {
+      item: null,
       msg: "OpenPLC WebServer 3 - Denial of Service",
       pythonCode: `
 #!/usr/bin/env python3
@@ -142,6 +147,7 @@ h3 {
   color: #922d4f;
 }
 .language-python {
+  width: 1000px;
   padding: 0px 20px;
 }
 .code {
@@ -178,7 +184,7 @@ h1 {
 }
 
 .box {
-  width: 450px;
+  width: 500px;
   height: 220px;
   display: flex;
   flex-direction: column;

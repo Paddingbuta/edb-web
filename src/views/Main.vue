@@ -3,7 +3,7 @@
     <!--<h1>{{ msg }}</h1> -->
 
     <div class="search-box">
-      <input type="text" placeholder="Type to search..." v-model="inputValue" @keyup.enter="select" />
+      <input class="searchtext" type="text" placeholder="Type to search..." v-model="inputValue" @keyup.enter="select" />
       <label for="search"> Search by: </label>
       <select id="search" v-model="selectedOption">
         <option value="cve-id">CVE-ID</option>
@@ -18,41 +18,43 @@
       <table id="myTable">
         <thead>
           <tr>
+            <th>OWN-ID</th>
+            <th>CVE-ID</th>
             <th>Date</th>
             <th>Title</th>
-            <th>Type</th>
-            <th>Platform</th>
+            <th>Bug-ID</th>
             <th>Author</th>
+            <th>Software</th>
+            <th>Platform</th>
           </tr>
         </thead>
         <tbody id="tableBody">
           <tr
-            v-for="(item, index) in rows"
+            v-for="(item, index) in rows.slice((currentpage - 1) * 15, currentpage * 15)"
             :key="index"
             :class="{ 'odd-tr': (index + 1) % 2 === 1, 'even-tr': (index + 1) % 2 === 0 }"
           >
-            <td>{{ item.cell1 }}</td>
+            <td>{{ item.own_ID }}</td>
+            <td>{{ item.CVE_ID }}</td>
+            <td>{{ item.time }}</td>
             <td>
-              <router-link class="link" to="/details">{{ item.cell2 }}</router-link>
+              <router-link class="link" :to="{ name: 'Details', params: { item: item } }" >{{ item.title }}</router-link>
             </td>
-            <td>{{ item.cell3 }}</td>
-            <td>{{ item.cell4 }}</td>
-            <td>{{ item.cell5 }}</td>
+            <td>{{ item.bugid }}</td>
+            <td>{{ item.author }}</td>
+            <td>{{ item.software_version }}</td>
+            <td>{{ item.test_platform }}</td>
           </tr>
         </tbody>
       </table>
     </div>
+
     <!-- 页数切换器 -->
     <ul class="pagination">
-      <li><a href="#">Previous</a></li>
-      <li class="current"><a href="#">1</a></li>
-      <li><a href="#">2</a></li>
-      <li><a href="#">3</a></li>
-      <li><a href="#">4</a></li>
-      <li><a href="#">5</a></li>
-      <li>...</li>
-      <li><a href="#">100</a></li>
-      <li><a href="#">Next</a></li>
+      <li><a @click="valdown">Previous</a></li>
+      <li><input class="pagenum" type="text" v-model="pagenum" @keyup.enter="handleChangePage"/></li>
+      <li><div>/  {{totalpage}}</div></li>
+      <li><a @click="valup">Next</a></li>
     </ul>
     <div class="bottom-blank"></div>
   </div>
@@ -65,31 +67,63 @@ export default {
   name: "Main",
   data() {
     return {
+      currentpage: 1,
+      totalpage: 100,
+      resultnum: 100,
       inputValue: '',
       msg: "Welcome to CodeSecLab",
-      rows: Array.from({ length: 16 }, (_, index) => ({
-        cell1: `2024-1-10`,
-        cell2: `OpenPLC WebServer 3 - Denial of Service`,
-        cell3: `DoS`,
-        cell4: `Multiple`,
-        cell5: `Kai Feng`,
+      pagenum: 1,
+      rows: Array.from({ length: 15 }, (_, index) => ({
+        'own_ID': 0,
+        'author': '',
+        'software_version': '',
       })),
       selectedOption: 'cve-id',
     };
   },
   methods: {
+    handleChangePage() {
+      if (this.pagenum > this.totalpage) {
+        this.currentpage = this.totalpage;
+        this.pagenum = this.totalpage;
+      }
+      else if (this.pagenum < 1) {
+        this.currentpage = 1;
+        this.pagenum = 1;
+      }
+      else {
+        this.currentpage = this.pagenum;
+      }
+    },
     select() {
       console.log('new search');
       const FPath = 'http://localhost:5000';
       axios.post(FPath, {inputValue: this.inputValue, selectedOption: this.selectedOption})
                     .then((res) => {
                       console.log(res.data);
-                      console.log(res.data.length);
+                      this.resultnum = res.data.length;
+                      this.totalpage = Math.ceil(this.resultnum / 15);
+                      this.rows = res.data;
                       //res为后端返回的查询数据
                     })
                     .catch((err) => {console.log(err)})
       
     },
+    valdown() {
+      if (this.currentpage > 1) {
+        this.currentpage--;
+        this.pagenum--;
+      }
+    },
+    valup() {
+      if (this.currentpage < this.totalpage) {
+        this.currentpage++;
+        this.pagenum++;
+      }
+    },
+  },
+  mounted() {
+    this.select();
   },
 };
 </script>
@@ -100,10 +134,10 @@ export default {
   height: 10px;
 }
 .odd-tr {
-  background-color: #f2f2f2;
+  background-color: #ffffff;
 }
 .even-tr {
-  background-color: #ffffff;
+  background-color: #f2f2f2;
 }
 td .link {
   color: #001f3f;
@@ -115,36 +149,52 @@ td .link:hover {
   text-decoration: underline;
 }
 .pagination {
+  font-size: 22px;
   margin-top: 30px;
   list-style: none;
   padding: 0;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .pagination li {
-  display: inline-block;
-  margin: 0 5px;
+  margin-right: 20px;
 }
 .pagination a {
   text-decoration: none;
   color: #333;
   display: block;
-  padding: 8px 12px;
 }
 .pagination a:hover {
-  background-color: #d0d0d0;
-  border-radius: 50%;
-}
-.pagination .current a {
-  background-color: orange;
-  color: white;
+  color: darkred;
+  text-decoration: underline;
 }
 
-input {
+.searchtext {
+  border: 2px solid #ccc;
   height: 40px;
   width: 600px;
-  font-size: 16px;
+  font-size: 20px;
   margin-right: 15px;
+  border-radius: 20px; /* 设置为足够大的值，根据需要调整 */
+  padding: 10px; /* 可选：添加一些 padding 以增强样式 */
+  outline: none; /* 可选：去除输入框的默认轮廓样式 */
+  transition: background-color 0.3s ease; /* 添加过渡效果 */
+}
+.searchtext:focus {
+  border-color: #922d4f; /* 选中状态时的边框颜色，根据需要调整 */
+}
+.searchtext:hover {
+  background-color: #f0f0f0;
+}
+.pagenum{
+  height: 40px;
+  width: 45px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  border-radius: 5px;
 }
 tr {
   height: 40px;
@@ -152,10 +202,17 @@ tr {
 /* 页数切换器容器样式 */
 
 #search {
-  height: 30px;
-  font-size: 16px;
+  height: 40px;
+  font-size: 20px;
+  padding: 5px;
+  border-radius: 6px;
 }
-
+#search:hover{
+  color: gray;
+}
+#search option{
+  color: black;
+}
 .search-box {
   top: 0;
   right: 0;

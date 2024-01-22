@@ -17,7 +17,7 @@ def select():
     if input_value == '':
         select_str = "SELECT * FROM poc_test"
     elif selected_option == 'cve-id':
-        select_str = "SELECT * FROM poc_test WHERE CVE_ID = '" + input_value +"'"
+        select_str = "SELECT * FROM poc_test WHERE CVE_ID LIKE '%" + input_value +"%'"
     else: 
         select_str = "SELECT * FROM poc_test WHERE "+ selected_option+" LIKE '%" + input_value + "%'"
     

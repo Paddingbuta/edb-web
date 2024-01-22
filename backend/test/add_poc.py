@@ -66,7 +66,7 @@ for folder_path in folder_paths:
         cursor.execute(insert_str, (
             trigger_method, test_platform, software_version, record, title, author, code_language, reference, time, tag,
             CVE_ID, bugid,
-            source, other_information.encode))
+            source, other_information))
         db.commit()
         cursor.close()
         print('victory')
