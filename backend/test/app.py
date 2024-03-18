@@ -26,7 +26,7 @@ def select():
         select_str = "SELECT * FROM poc_test WHERE "+ selected_option+" LIKE '%" + input_value + "%'"
     
     print(select_str)
-    db = pymysql.connect(host='localhost', user='root', password='20030507oy', database='poc', charset='utf8mb4')
+    db = pymysql.connect(host='172.18.0.3', user='root', password='123456', database='poc', charset='utf8mb4')
 
     # 创建游标对象
     cursor = db.cursor()
@@ -61,5 +61,13 @@ def select():
 
     return jsonify(data)
 
+# 添加跨域支持
+@app.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', '*')
+    response.headers.add('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+    return response
+
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True, host="0.0.0.0", port="5000")
