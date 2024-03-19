@@ -24,8 +24,8 @@ docker pull paddingbuta/test-docker:1.0.0
 
 docker network create --subnet=172.18.0.0/16 mynet
 
-docker run -d -p 4306:3306 --net mynet --ip 172.18.0.3 -v /root/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 mysql:latest
-docker run -p 3060:8086 -p 5000:5000 -d -v /root/project:/root/project --net mynet --ip 172.18.0.2 --name vueApp test-docker:1.0.0
+docker run -d -p 4306:3306 --net mynet --ip 172.18.0.3 -v /root/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 paddingbuta/mysql:latest
+docker run -p 3060:8086 -p 5000:5000 -d -v /root/project:/root/project --net mynet --ip 172.18.0.2 --name vueApp paddingbuta/test-docker:1.0.0
 
 # in vueApp container
 python3 /usr/share/nginx/test/app.py
