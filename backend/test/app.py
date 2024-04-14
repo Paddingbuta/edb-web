@@ -26,7 +26,7 @@ def select():
         select_str = "SELECT * FROM poc_test WHERE "+ selected_option+" LIKE '%" + input_value + "%'"
     
     print(select_str)
-    db = pymysql.connect(host='172.18.0.3', user='root', password='123456', database='poc', charset='utf8mb4')
+    db = pymysql.connect(host='127.0.0.1', user='root', password='20030507oy', database='poc', charset='utf8mb4')
 
     # 创建游标对象
     cursor = db.cursor()

@@ -1,11 +1,11 @@
 <!-- PageFooter.vue -->
 <template>
-    <nav class="title-bar">
+  <nav class="title-bar">
     <router-link to="/">
-      <img src="../assets/logo.png">
+      <img src="../assets/logo3.png">
     </router-link>
-    </nav>
-  </template>
+  </nav>
+</template>
   
   <script>
   export default {
@@ -18,7 +18,11 @@
   .title-bar {
     background-color: #122d4f;
     color: white;
-    padding: 10px;
+    height: 160px;
+  }
+  img{
+    width: 420px;
+    height: 150px;
   }
   </style>
   

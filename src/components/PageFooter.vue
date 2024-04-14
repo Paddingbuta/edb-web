@@ -1,8 +1,9 @@
 <!-- PageFooter.vue -->
 <template>
   <div class="page-footer">
-    <p>© 2024 天津大学CodeSecLab 版权所有</p>
-    <p>Copyright © 2024 Tianjin University Code Security Lab. All rights reserved</p>
+    <div class="br"></div>
+    <h4>CyberSploit</h4>
+    <h4>Large-Scale Proof-of-Concept Data Storage and Submission Sites</h4>
   </div>
 </template>
 
@@ -19,12 +20,13 @@ export default {
   position: relative;
   bottom: 0;
   width: 100%;
-  height: 70px;
+  height: 90px;
   background-color: #122d4f;
   font-size: 13px;
   color: white;
   text-align: center;
-  padding: 10px 0;
 }
-
+.br{
+  height: 5px;
+}
 </style>
