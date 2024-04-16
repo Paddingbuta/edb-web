@@ -19,6 +19,7 @@
     background-color: #122d4f;
     color: white;
     height: 160px;
+    width: 100%;
   }
   img{
     width: 420px;

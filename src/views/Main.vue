@@ -45,7 +45,7 @@
             <td>{{ item.CVE_ID }}</td>
             <td>{{ item.time }}</td>
             <td>
-              <router-link class="link" :to="{ name: 'Details', params: { item: item } }">{{ item.title }}</router-link>
+              <a class="link" @click="getdetail(item)" > {{ item.title }}</a>
             </td>
             <td>{{ item.bugid }}</td>
             <td>{{ item.author }}</td>
@@ -103,13 +103,26 @@ export default {
         this.currentpage = this.pagenum;
       }
     },
-    select() {
-      console.log('new search');
+    getdetail(item) { 
       this.isLoading = true;
-      const FPath = 'http://localhost:5000';
+      const FPath = 'http://159.75.80.253:5000';
+      axios.post(FPath, { inputValue: item.own_ID, selectedOption: 'getdetails' })
+        .then((res) => {
+          item.other_information = res.data[0].other_information;
+          this.isLoading = false;
+          this.$router.push({name: 'Details', params: { item: item }});
+          //res为后端返回的查询数据
+        })
+        .catch((err) => { 
+          console.log(err);
+        })
+    },
+    select() {
+      this.isLoading = true;
+      const FPath = 'http://159.75.80.253:5000';
       axios.post(FPath, { inputValue: this.inputValue, selectedOption: this.selectedOption })
         .then((res) => {
-          console.log(res.data);
+          //console.log(res.data);
           this.resultnum = res.data.length;
           this.totalpage = Math.ceil(this.resultnum / 15);
           if(this.totalpage == 0) {
@@ -190,13 +203,13 @@ td .link:hover {
 .search-container {
   position: relative;
   display: inline-block;
-
+  margin-right: 25%;
 }
 
 .search-icon {
-  width: 4%;
+  width: 8%;
   position: absolute;
-  left: 13px;
+  left: 17px;
   /* 调整图标距离左侧的位置 */
   top: 50%;
   transform: translateY(-50%);
@@ -231,7 +244,7 @@ td .link:hover {
 .searchtext {
   border: 2px solid #ccc;
   height: 40px;
-  width: 600px;
+  width: 190%;
   font-size: 20px;
   margin-right: 15px;
   border-radius: 100px;
@@ -302,6 +315,8 @@ tr {
   margin-bottom: 20px;
   padding: 20px 20px;
   font-size: 20px;
+  width: 95%;
+  display: inline-block;
 }
 
 table {

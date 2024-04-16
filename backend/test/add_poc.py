@@ -3,7 +3,7 @@ import pymysql
 import os
 
 # 连接数据库，user password database 都按照自己数据库实际名字更改
-db = pymysql.connect(host='172.18.0.3', user='root', password='123456', database='poc', charset='utf8mb4')
+db = pymysql.connect(host='127.0.0.1', user='root', password='20030507oy', database='poc', charset='utf8mb4')
 print('数据库连接成功！')
 
 # 存档所有CVE文件夹的目录路径
