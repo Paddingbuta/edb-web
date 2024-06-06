@@ -16,11 +16,11 @@
       </div>
       <label for="search"> Search by: </label>
       <select id="search" v-model="selectedOption">
-        <option value="cve-id">CVE-ID</option>
+        <option value="cve-id">CVE ID</option>
         <option value="title">Title</option>
         <option value="author">Author</option>
-        <option value="software">Software</option>
-        <option value="platform">Platform</option>
+        <option value="software">Software Version</option>
+        <option value="platform">Test Platform</option>
       </select>
     </div>
 
@@ -28,14 +28,14 @@
       <table id="myTable">
         <thead>
           <tr>
-            <th>OWN-ID</th>
-            <th>CVE-ID</th>
+            <th>OWN ID</th>
+            <th>CVE ID</th>
             <th>Publish Time</th>
             <th>Title</th>
             <!-- <th>Bug-ID</th> -->
             <th>Author</th>
-            <th>Software</th>
-            <th>Platform</th>
+            <th>Software Version</th>
+            <th>Test Platform</th>
           </tr>
         </thead>
         <tbody id="tableBody">
@@ -105,7 +105,7 @@ export default {
     },
     getdetail(item) { 
       this.isLoading = true;
-      const FPath = 'http://127.0.0.1:5000';
+      const FPath = 'http://159.75.80.253:5000';
       axios.post(FPath, { inputValue: item.own_ID, selectedOption: 'getdetails' })
         .then((res) => {
           item.other_information = res.data[0].other_information;
@@ -119,7 +119,7 @@ export default {
     },
     select() {
       this.isLoading = true;
-      const FPath = 'http://127.0.0.1:5000';
+      const FPath = 'http://159.75.80.253:5000';
       axios.post(FPath, { inputValue: this.inputValue, selectedOption: this.selectedOption })
         .then((res) => {
           //console.log(res.data);
