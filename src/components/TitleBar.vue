@@ -1,8 +1,7 @@
-<!-- PageFooter.vue -->
 <template>
   <nav class="title-bar">
     <router-link to="/">
-      <img src="../assets/logo3.png">
+      <img src="../assets/logo.png">
     </router-link>
   </nav>
 </template>
@@ -16,14 +15,14 @@
   <style scoped>
   
   .title-bar {
-    background-color: #122d4f;
+    background-color: #d6e6fe;
     color: white;
-    height: 160px;
-    width: 100%;
+    height: 100px;
+    width:100%;
   }
   img{
-    width: 420px;
-    height: 150px;
+    width: 600px;
+    height: 100px;
   }
   </style>
   

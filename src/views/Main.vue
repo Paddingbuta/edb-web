@@ -24,15 +24,15 @@
       </select>
     </div>
 
-    <div>
+    <div class="table">
       <table id="myTable">
         <thead>
           <tr>
             <th>OWN-ID</th>
             <th>CVE-ID</th>
-            <th>Date</th>
+            <th>Publish Time</th>
             <th>Title</th>
-            <th>Bug-ID</th>
+            <!-- <th>Bug-ID</th> -->
             <th>Author</th>
             <th>Software</th>
             <th>Platform</th>
@@ -42,12 +42,12 @@
           <tr v-for="(item, index) in rows.slice((currentpage - 1) * 15, currentpage * 15)" :key="index"
             :class="{ 'odd-tr': (index + 1) % 2 === 1, 'even-tr': (index + 1) % 2 === 0 }">
             <td>{{ item.own_ID }}</td>
-            <td>{{ item.CVE_ID }}</td>
+            <td style="font-weight: bold;">{{ item.CVE_ID }}</td>
             <td>{{ item.time }}</td>
             <td>
               <a class="link" @click="getdetail(item)" > {{ item.title }}</a>
             </td>
-            <td>{{ item.bugid }}</td>
+            <!-- <td>{{ item.bugid }}</td> -->
             <td>{{ item.author }}</td>
             <td>{{ item.software_version }}</td>
             <td>{{ item.test_platform }}</td>
@@ -105,7 +105,7 @@ export default {
     },
     getdetail(item) { 
       this.isLoading = true;
-      const FPath = 'http://159.75.80.253:5000';
+      const FPath = 'http://127.0.0.1:5000';
       axios.post(FPath, { inputValue: item.own_ID, selectedOption: 'getdetails' })
         .then((res) => {
           item.other_information = res.data[0].other_information;
@@ -119,7 +119,7 @@ export default {
     },
     select() {
       this.isLoading = true;
-      const FPath = 'http://159.75.80.253:5000';
+      const FPath = 'http://127.0.0.1:5000';
       axios.post(FPath, { inputValue: this.inputValue, selectedOption: this.selectedOption })
         .then((res) => {
           //console.log(res.data);
@@ -159,6 +159,14 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.table {
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  width: 90%;
+
+}
+
 .loading {
   position: fixed;
   top: 0;
@@ -315,13 +323,22 @@ tr {
   margin-bottom: 20px;
   padding: 20px 20px;
   font-size: 20px;
-  width: 95%;
+  width: 100%;
   display: inline-block;
 }
 
 table {
   border-collapse: collapse;
   width: 100%;
+}
+.table {
+  text-align: center; /* 将表格中的内容居中显示 */
+  margin: 0 auto; /* 在页面中水平居中显示 */
+}
+
+#myTable {
+  width: 100%; /* 设置表格的宽度 */
+  margin: 0 auto; /* 使表格在容器中水平居中显示 */
 }
 
 th,

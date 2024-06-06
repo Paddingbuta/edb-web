@@ -1,9 +1,10 @@
 <template>
   <div class="contents">
     <h1>{{ item.title }}</h1>
+    
 
     <div class="container">
-      <div class="box3">
+      <div class="box">
         <h2 class="top-text ownid">
           OWN-ID:
           <h3>{{item.own_ID}}</h3>
@@ -12,8 +13,6 @@
           CVE-ID:
           <h3>{{item.CVE_ID}}</h3>
         </h2>
-      </div>
-      <div class="box">
         <h2 class="top-text">
           Test Platform:
           <h3>{{item.test_platform}}</h3>
@@ -23,11 +22,37 @@
           <h3>{{item.software_version}}</h3>
         </h2>
         <h2 class="top-text">
-          Tag: <h3>{{item.tag}}</h3>  Code Language:
-          <h3>{{item.code_language}}</h3>
+          Author:
+          <h3>{{item.author}}</h3>
+        </h2>
+        <h2 class="top-text">
+          Source:
+          <h3>{{item.source}}</h3>
+        </h2>
+        <h2 class="top-text">
+          Publish Time:
+          <h3>{{item.time}}</h3>
+        </h2>
+        <h2 class="top-text">
+          Reference:
+          <h3>{{item.reference}}</h3>
         </h2>
       </div>
-      <div class="box">
+      <!-- <div class="box">
+        <h2 class="top-text">
+          Test Platform:
+          <h3>{{item.test_platform}}</h3>
+        </h2>
+        <h2 class="top-text">
+          Software Version:
+          <h3>{{item.software_version}}</h3>
+        </h2> -->
+        <!-- <h2 class="top-text">
+          Tag: <h3>{{item.tag}}</h3>  Code Language:
+          <h3>{{item.code_language}}</h3>
+        </h2> -->
+      <!-- </div> -->
+      <!-- <div class="box">
         <h2 class="top-text">
           Author:
           <h3>{{item.author}}</h3>
@@ -37,12 +62,14 @@
           <h3>{{item.source}}</h3>
         </h2>
         <h2 class="top-text">
-          Time:
+          Publish Time:
           <h3>{{item.time}}</h3>
         </h2>
-      </div>
+      </div> -->
     </div>
+    <!-- <div class="bottom-blank"></div>
     <div class="bottom-blank"></div>
+
     <div class="container">
       <div class="box2">
         <h2 class="top-text">
@@ -50,26 +77,26 @@
           <h3>{{item.reference}}</h3>
         </h2>
       </div>
-    </div>
-    <div class="bottom-blank"></div>
-    <div class="container">
+    </div> -->
+    <!-- <div class="bottom-blank"></div> -->
+    <!-- <div class="container">
       <div class="box2">
         <h2 class="top-text">
           Trigger Method:
           <h3>{{item.trigger_method}}</h3>
         </h2>
       </div>
-    </div>
-    <div class="bottom-blank"></div>
-    <div class="container">
+    </div> -->
+    <!-- <div class="bottom-blank"></div> -->
+    <!-- <div class="container">
       <div class="box2">
         <h2 class="top-text">
           Record:
           <h3>{{item.record}}</h3>
         </h2>
       </div>
-    </div>
-    <div class="bottom-blank"></div>
+    </div> -->
+    <!-- <div class="bottom-blank"></div> -->
     <div class="code">
       <!-- Python 代码 -->
       <pre>
@@ -103,7 +130,8 @@ export default {
 h2 {
   display: inline-block !important;
   margin: 20px 10px;
-  height: 30px;
+  height: 15px;
+  
 }
 h2.ownid{
   margin-top: 0px;
@@ -139,8 +167,8 @@ pre code {
   text-align: center;
 }
 h1 {
-  font-size: 40px;
-  margin: 50px 0px;
+  font-size: 35px;
+  margin: 40px 0px;
 }
 .bottom-blank {
   height: 30px;
@@ -151,14 +179,23 @@ h1 {
 }
 
 .box {
-  width: 500px;
-  height: 220px;
+  width: 950px;
+  height: 380px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #f0f0f0;
+  /* background: radial-gradient(178.94% 106.41% at 26.42% 106.41%, #96b3b5 0%, rgba(255, 255, 255, 0) 71.88%); */
+  
   margin-right: 40px;
-  border: 1px solid #ccc;
+  border-radius: 30px;
+  /* box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.3);
+  
+  background: #e0e0e0;
+  box-shadow: 15px 15px 30px #bebebe,
+             -15px -15px 30px #ffffff; */
+             background: radial-gradient(ellipse farthest-side at 76% 77%, rgba(245, 228, 212, 0.25) 4%, rgba(255, 255, 255, 0) calc(4% + 1px)), radial-gradient(circle at 76% 40%, #fef6ec 4%, rgba(255, 255, 255, 0) 4.18%), linear-gradient(135deg, #eff0f2 0%, #000036 100%), radial-gradient(ellipse at 28% 0%, #ace3ff 0%, rgba(98, 149, 144, 0.5) 100%), linear-gradient(180deg, #bccace 0%, #f5eab0 69%, #d6c8a2 70%, #f3f5f4 100%);
+  background-blend-mode: normal, normal, screen, overlay, normal;
+  box-shadow: 0px 0px 10px 1px #000000;
 }
 
 .box2 {

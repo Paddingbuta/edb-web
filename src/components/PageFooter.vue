@@ -14,14 +14,17 @@ export default {
 </script>
 
 <style scoped>
-
+h4 {
+  font-size: 15px;
+  color: #000000;
+}
 .page-footer {
   font-size: 13px;
   position: relative;
   bottom: 0;
   width: 100%;
   height: 90px;
-  background-color: #122d4f;
+  background-image: linear-gradient(to bottom,#f1f1f1,#d5dbe8, #c1cee1,#b2cbe9);  
   font-size: 13px;
   color: white;
   text-align: center;
