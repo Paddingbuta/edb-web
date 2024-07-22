@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Main from '@/views/Main'
 import Details from '@/views/Details'
-
+import Root from '@/views/Root'
 Vue.use(Router)
 
 export default new Router({
@@ -10,7 +10,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/cybersploit',
+      name: 'Root',
+      component: Root,
     },
     {
       path: '/cybersploit',

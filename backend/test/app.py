@@ -6,7 +6,7 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)  # 启用 CORS
-hostip = "127.0.0.1"
+hostip = "172.18.0.3"
 psd = "123456"
 
 
