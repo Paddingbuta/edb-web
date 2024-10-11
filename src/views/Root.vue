@@ -1,11 +1,11 @@
 <template>
-    <div class="contents">
-        <!-- <router-link to="/cybersploit">CyberSploit: Large Scale Proof-of-Concept Databse</router-link>
+  <div class="contents">
+    <!-- <router-link to="/cybersploit">CyberSploit: Large Scale Proof-of-Concept Databse</router-link>
         <br>
         <a href="http://harmonyflow.sctruster.com:8080/">harmonyflow</a>
         <br>
         <a href="http://159.75.80.253:8888/mutisource">mutisource</a> -->
-
+    <!--
         <div class="card">
             <div>
                 <div class="number">01</div>
@@ -68,34 +68,92 @@
                     </button>
                 </a>
             </div>
-        </div>
+        </div> -->
+    <div class="background">
+      <div class="title">CodeSecLab</div>
+      <div class="description">Located at Tianjin University, our research focuses on software supply chain security and vulnerability detection.</div>
     </div>
+    <div class="box"></div> <!-- 添加的方框 -->
+    <div class="large-box">
+      <p>The companies and products we work with</p>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-    name: 'Root'
-}
+  name: "Root",
+};
 </script>
 
 <style scoped>
 .contents {
-    width: 100%;
-    margin-top: 60px;
-    margin-bottom: 60px;
-    display: flex;
-    justify-content: center;
-    gap: 100px;
-    padding: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column; /* 使内容从上到下排列 */
+  height: 100vh; /* 设置容器高度为视口高度 */
+  justify-content: flex-start; /* 从顶部开始对齐内容 */
+  align-items: center; /* 水平居中所有内容 */
+}
+.background {
+  background-image: url("../../dist/static/img/bg1.png");
+  background-position: center; /* 图片居中显示 */
+  background-repeat: no-repeat; /* 不重复背景图片 */
+  width: 100%; /* 容器宽度 */
+  height: 60%; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 垂直居中内容 */
+  align-items: center; /* 水平居中内容 */
+  color: white; /* 字体颜色，可以根据需要调整 */
 }
 
+.title {
+  font-size: 36px; /* 标题字体大小 */
+  font-weight: bold; /* 加粗标题 */
+  margin-bottom: 10px; /* 标题和描述之间的间距 */
+}
+
+.description {
+  font-size: 18px; /* 描述字体大小 */
+  text-align: center; /* 居中对齐描述文本 */
+}
+
+.box {
+  width: 50%; /* 方框宽度 */
+  height: 200px; /* 方框高度 */
+  background-color: rgba(255, 255, 255, 0.8); /* 方框背景色，带透明度 */
+  border-radius: 10px; /* 方框边角圆滑 */
+  margin-top: -20px; /* 向上移动方框以使其中线穿过图片下端 */
+  display: flex;
+  justify-content: center; /* 水平居中内容 */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 添加阴影效果 */
+}
+
+.large-box {
+  width: 90%; /* 大框宽度 */
+  height: 150px; /* 大框高度 */
+  background-color: rgba(240, 240, 240, 0.9); /* 设置大框背景色 */
+  border-radius: 15px; /* 边角圆滑 */
+  margin-top: 30px; /* 与上方内容保持一定距离 */
+  display: flex;
+  justify-content: center; /* 水平居中内容 */
+  align-items: center; /* 垂直居中内容 */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+}
+
+.large-box p {
+  font-size: 24px; /* 文字大小 */
+  font-weight: bold; /* 文字加粗 */
+  color: #333; /* 文字颜色 */
+  text-align: center; /* 文字居中对齐 */
+}
+/*
 .card {
     position: relative;
     box-sizing: border-box;
     width: 300px;
     height: 400px;
-    /* background: rgba(99, 187, 228, 0.103); */
-    /* border: 1px solid white; */
     box-shadow: 12px 17px 51px rgba(3, 50, 219, 0.22);
     backdrop-filter: blur(6px);
     border-radius: 50px;
@@ -179,4 +237,5 @@ export default {
     transform: translate(0.05em, 0.05em);
     box-shadow: 0.05em 0.05em #5566c2;
 }
+*/
 </style>
