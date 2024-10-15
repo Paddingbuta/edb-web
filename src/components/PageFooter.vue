@@ -1,16 +1,18 @@
 <!-- PageFooter.vue -->
 <template>
   <div class="page-footer">
-    <div class="br"></div>
     <!-- <h4>CyberSploit</h4>
     <h4>Large-Scale Proof-of-Concept Data Storage and Submission Sites</h4> -->
     <div
       v-if="isHomePage"
-      class="icp"
-    >{{`© ${year} ${author} ` }}<a
+      class="icp">
+    <strong>Copyright©CodeSecLab</strong>
+    All Rights Reserved
+      <a
         href="https://beian.miit.gov.cn"
         target="_blank"
-      >{{ record }}</a></div>
+      >{{ record }}</a>
+    </div>
   </div>
 </template>
 
@@ -43,7 +45,7 @@ export default {
   right: 0;
   margin: 10px 0;
   width: 100%;
-  height: 36px;
+  
   white-space: pre;
   text-align: center;
   color: gray;
@@ -54,7 +56,7 @@ export default {
   text-decoration: none;
 }
 .icp > a:hover {
-  color: aqua;
+  color: rgb(242, 15, 15);
   text-decoration: none;
 }
 
@@ -63,7 +65,7 @@ export default {
   position: relative;
   bottom: 0;
   width: 100%;
-  height: 70px;
+  height: 90px;
   background-image: linear-gradient(
     to bottom,
     #f1f1f1,
@@ -76,7 +78,4 @@ export default {
   text-align: center;
 }
 
-.br {
-  height: 5px;
-}
 </style>
