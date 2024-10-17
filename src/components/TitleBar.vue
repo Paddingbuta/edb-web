@@ -1,13 +1,10 @@
 <template>
   <nav class="title-bar">
-    <!-- <router-link to="/"> -->
     <img src="../assets/logo3.png" class="logo">
-    <!-- </router-link> -->
     <div class="option">
       安全数据
       <div class="dropdown">
         <a href="#">漏洞数据</a>
-        <!-- <router-link to="/cybersploit"><a href="#">PoC</a></router-link> -->
         <a href="/cybersploit">漏洞PoC</a>
       </div>
     </div>
@@ -33,8 +30,8 @@
         <a href="#">恶意行为画像</a>
       </div>
     </div>
-    
-    
+
+
     <!--
     <div class="button-container">
       <div class="logsign">
@@ -59,7 +56,7 @@ export default {
   position: relative;
   background-color: #ffffff;
   color: white;
-  height: 100px;
+  /* height: 100px; */
   width: 100%;
   display: flex;
   justify-content: flex-start;
@@ -68,29 +65,30 @@ export default {
 }
 
 .logo {
-  width: 300px;
-  height: 100px;
-  margin-right: 50px;
+  width: 20%;
+  height: 5%;
+  /* margin-right: 50px; */
   /* 给图片添加右边距，让下拉框离图片有一定距离 */
 }
 
 .option {
+  /* display: flex; */
   position: relative;
-  font-size: 21px;
-  width: 120px;
-  height: 35px;
-  color: rgb(0, 0, 0);
+  font-size: 1vw;
+  width: 9%;
+  height: 90%;
+  color: rgb(24, 17, 43);
   /* border: 1px solid black; */
   /* border: 1px solid black; */
   /* background-color: #f0f0f0; Light grey background */
   font-weight: bold;
   cursor: pointer;
-  margin-right: 20px;
+  margin-right: 3%;
   text-align: center;
   /* 文本居中 */
   line-height: 35px;
   /* 使文本垂直居中 */
-  padding-right: 20px;
+  /* padding-right: 1%; */
   /* 留出倒三角的空间 */
 }
 
