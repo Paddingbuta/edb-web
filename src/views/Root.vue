@@ -4,13 +4,13 @@
       <div class="title">SCTruster</div>
       <div class="description">可信软件供应链治理平台提供了面向多种业务场景的软件供应链漏洞检测、验证、修复、攻防等全栈式安全防护示例。
       </div>
-      <div class="box">
-        <div class="awards">
-          <h2>软件供应链安全研究工作共计6次获得CCF-A类国际顶级会议的ACM SIGSOFT Distinguished Paper Awards荣誉</h2>
-          <div class="sixaward">ICSE 2018, ICSE 2021, ASE 2022, ICSE 2023, ASE 2023, FSE 2024</div>
-        </div>
-        <div class="trophy"></div>
+      <!-- <div class="box"> -->
+      <div class="awards">
+        <h2>软件供应链安全研究工作共计6次获得CCF-A类国际顶级会议的ACM SIGSOFT Distinguished Paper Awards荣誉</h2>
       </div>
+      <div class="sixaward">ICSE 2018, ICSE 2021, ASE 2022, ICSE 2023, ASE 2023, FSE 2024</div>
+      <!-- <div class="trophy"></div> -->
+      <!-- </div> -->
     </div>
     <!-- <div class="box">
       <div class="awards">
@@ -176,7 +176,7 @@ export default {
   font-size: 8vw;
   font-weight: bold;
   margin-top: 4%;
-  color: #014f98;
+  color: #fffcbd;
   /* background-image: linear-gradient(to right, rgb(132, 148, 90), rgb(60, 133, 92), rgb(18, 56, 95), rgb(60, 119, 133), rgb(132, 148, 90), rgb(60, 133, 92));
   background-clip: text;
   -webkit-background-clip: text;
@@ -184,45 +184,46 @@ export default {
 }
 
 .description {
-  font-size: 1.5vw;
-  width: 46%;
-  /* font-weight: bold; */
+  font-size: 1.2vw;
+  width: 80%;
+  font-weight: bold;
   text-align: center;
-  color: #252b3b;
+  color: #ffffff;
 }
 
-.box {
+/* .box {
   width: 60%;
   height: 30%;
   background-color: rgb(164, 199, 255);
   border-radius: 10px;
   display: flex;
   justify-content: space-between;
-  /* Space between awards and trophy */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   margin-top: 30px;
-}
+} */
 
 .awards {
   font-size: 1vw;
-  width: 110%;
+  
+  /* width: 60%; */
   /* Wider to accommodate text */
-  height: 90%;
+  /* height: 90%; */
   /* Keep this consistent to maintain visual alignment */
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   /* Stack text vertically */
   justify-content: center;
   /* Center text vertically */
-  padding: 2%;
-  /* margin-top: -1%; */
+  /* padding: 2%; */
+  margin-top: 5%;
 }
 
 .sixaward {
   font-size: 1vw;
   /* margin-top: 2%; */
-  color: #6b7074;
+  color: #fffcbd;
   font-weight: bold;
+  justify-content: center;
 }
 
 .trophy {
@@ -282,23 +283,16 @@ export default {
 .picture1 img,
 /* .picture2 img, */
 .picture3 img {
-  max-width: 45%;
-  /* 设置图片最大宽度 */
+  max-width: 40%;
   height: auto;
-  /* 保持宽高比 */
   margin: 0 70px;
-  /* 图片间距 */
 }
 
 .picture2 img {
-  max-width: 25%;
-  /* 设置图片最大宽度 */
+  max-width: 100%;
   height: auto;
-  /* 保持宽高比 */
   display: block;
-  /* 将图片设置为块级元素 */
-  margin: 0 auto;
-  /* 上下间距为0，左右自动居中 */
+  margin: 0 70px;
 }
 
 .container {
