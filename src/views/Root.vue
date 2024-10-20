@@ -4,14 +4,21 @@
       <div class="title">SCTruster</div>
       <div class="description">可信软件供应链治理平台提供了面向多种业务场景的软件供应链漏洞检测、验证、修复、攻防等全栈式安全防护示例。
       </div>
+      <div class="box">
+        <div class="awards">
+          <h2>软件供应链安全研究工作共计6次获得CCF-A类国际顶级会议的ACM SIGSOFT Distinguished Paper Awards荣誉</h2>
+          <div class="sixaward">ICSE 2018, ICSE 2021, ASE 2022, ICSE 2023, ASE 2023, FSE 2024</div>
+        </div>
+        <div class="trophy"></div>
+      </div>
     </div>
-    <div class="box">
+    <!-- <div class="box">
       <div class="awards">
         <h2>软件供应链安全研究工作共计6次获得CCF-A类国际顶级会议的ACM SIGSOFT Distinguished Paper Awards荣誉</h2>
         <div class="sixaward">ICSE 2018, ICSE 2021, ASE 2022, ICSE 2023, ASE 2023, FSE 2024</div>
       </div>
       <div class="trophy"></div>
-    </div>
+    </div> -->
     <div class="large-box">
       <p>研究成果在国家电网、中汽中心、华为等知名企业落地</p>
       <div class="company">
@@ -186,19 +193,19 @@ export default {
 
 .box {
   width: 60%;
-  height: 15%;
-  background-color: rgb(238, 251, 255);
+  height: 30%;
+  background-color: rgb(164, 199, 255);
   border-radius: 10px;
-  margin-top: -1%;
   display: flex;
   justify-content: space-between;
   /* Space between awards and trophy */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  margin-top: 30px;
 }
 
 .awards {
   font-size: 1vw;
-  width: 100%;
+  width: 110%;
   /* Wider to accommodate text */
   height: 90%;
   /* Keep this consistent to maintain visual alignment */
@@ -208,13 +215,14 @@ export default {
   justify-content: center;
   /* Center text vertically */
   padding: 2%;
-  margin-top: -1%;
+  /* margin-top: -1%; */
 }
 
 .sixaward {
   font-size: 1vw;
-  margin-top: 2%;
-  color: #7b8ea1;
+  /* margin-top: 2%; */
+  color: #6b7074;
+  font-weight: bold;
 }
 
 .trophy {
