@@ -22,6 +22,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 ``` bash
 docker build -t dockervue .
 docker tag dockervue:latest paddingbuta/dockervue:v1
+docker push paddingbuta/dockervue:v1
 ```
 
 ## Deployment Environment Docker
