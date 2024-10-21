@@ -23,14 +23,14 @@
       <p>研究成果在国家电网、中汽中心、华为等知名企业落地</p>
       <div class="company">
         <div class="company-pictures">
-          <div class="picture3">
-            <img src="../../src/assets/guojiadianwang.png" alt="Company 3 Logo">
+          <div class="picture1">
+            <!-- <img src="../../src/assets/guojiadianwang.png"> -->
           </div>
           <div class="picture2">
-            <img src="../../src/assets/ZQZX.png" alt="Company 2 Logo" style="width: 50%; height: auto;">
+            <!-- <img src="../../src/assets/ZQZX.png"> -->
           </div>
           <div class="picture1">
-            <img src="../../src/assets/HUAWEI.png" alt="Company 1 Logo">
+            <!-- <img src="../../src/assets/HUAWEI.png"> -->
           </div>
         </div>
       </div>
@@ -204,7 +204,7 @@ export default {
 
 .awards {
   font-size: 1vw;
-  
+
   /* width: 60%; */
   /* Wider to accommodate text */
   /* height: 90%; */
@@ -246,13 +246,9 @@ export default {
   margin-top: 5%;
   margin-bottom: 5%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  /* 垂直居中内容 */
   flex-direction: column;
-  /* 使元素纵向排列 */
   align-items: center;
-  /* 中心对齐 */
+  justify-content: center;
 }
 
 .large-box p {
@@ -264,35 +260,55 @@ export default {
 
 .company {
   display: flex;
-  /* 使公司 logos 在一行显示 */
   justify-content: center;
-  /* 水平居中对齐 */
   margin-top: 2%;
-  /* 如果需要，可以调整上下间距 */
 }
 
 .company-pictures {
   display: flex;
-  /* 启用 flexbox 布局 */
-  justify-content: space-between;
-  /* 图片之间均匀分布 */
   align-items: center;
-  /* 垂直居中对齐 */
+  justify-content: space-between;
+  width: 100%;
+  /* 确保容器宽度填满父容器 */
 }
 
-.picture1 img,
-/* .picture2 img, */
-.picture3 img {
-  max-width: 40%;
-  height: auto;
-  margin: 0 70px;
+.picture1,
+.picture2 {
+  background-size: contain;
+  /* 确保背景图片按比例缩放 */
+  background-repeat: no-repeat;
+  /* 防止背景图片重复 */
+  margin: 0 10px;
+  /* 设置左右外边距，确保间隔 */
+  height: 10vw;
+  /* 使用视口宽度的百分比作为高度 */
+  width: 10vw;
+  /* 使用视口宽度的百分比作为宽度 */
 }
 
-.picture2 img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 70px;
+/* 如果您想要图片的高度和宽度不同，可以分别设置 */
+.picture1 {
+  background-image: url("../../src/assets/guojiadianwang.png");
+  height: 8vw;
+  /* 例如，这里将高度设置为8vw */
+  width: 12vw;
+  /* 将宽度设置为12vw */
+}
+
+.picture2 {
+  background-image: url("../../src/assets/ZQZX.png");
+  height: 8vw;
+  width: 12vw;
+  margin-right: 4vw;
+}
+
+/* 为第三个图片添加样式 */
+.picture1:last-child {
+  background-image: url("../../src/assets/HUAWEI.png");
+  margin-right: 10px;
+  /* 设置右边距 */
+  height: 8vw;
+  width: 12vw;
 }
 
 .container {
@@ -344,6 +360,7 @@ export default {
   position: relative;
   transition: all 0.3s ease;
   /* 过渡效果 */
+  border-radius: 5px;
 }
 
 .explore-link:hover {
@@ -353,6 +370,8 @@ export default {
   /* 鼠标悬停时字体变成深蓝色 */
   transform: translateX(10%);
   /* 字体右移 */
+
+  
 }
 
 /* .explore-link::after { */
