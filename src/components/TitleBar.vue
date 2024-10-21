@@ -76,8 +76,8 @@ export default {
   position: relative;
   font-size: 1vw;
   width: 9%;
-  height: 90%;
-  color: rgb(24, 17, 43);
+  height: 60px;
+  color: rgb(0, 0, 0);
   /* border: 1px solid black; */
   /* border: 1px solid black; */
   /* background-color: #f0f0f0; Light grey background */
@@ -86,15 +86,16 @@ export default {
   margin-right: 3%;
   text-align: center;
   /* 文本居中 */
-  line-height: 35px;
+  line-height: 40px;
   /* 使文本垂直居中 */
   /* padding-right: 1%; */
   /* 留出倒三角的空间 */
+  margin-top: 30px;
 }
 
 .option:hover {
-  border-radius: 10px;
-  background-color: rgba(148, 166, 207, 0.1);
+  /* border-radius: 10px; */
+  background-color: rgba(161, 195, 253, 0.1);
 }
 
 
@@ -127,13 +128,13 @@ export default {
   background-color: rgb(244, 248, 255);
   z-index: 1;
   font-size: 14px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
 }
 
 /* 下拉菜单的选项 */
 .dropdown a {
   display: block;
-  padding: 10px;
+  padding: 1px;
   text-decoration: none;
   color: black;
 }
