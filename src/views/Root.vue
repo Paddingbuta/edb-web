@@ -6,9 +6,9 @@
       </div>
       <!-- <div class="box"> -->
       <div class="awards">
-        <h2>软件供应链安全研究工作共计6次获得CCF-A类国际顶级会议的ACM SIGSOFT Distinguished Paper Awards荣誉</h2>
+        <h2><i>软件供应链安全研究工作共计<font style="font-size:35px"><span style="color:yellow;">6次</span></font>获得CCF-A类国际顶级会议的<font style="font-size:30px"><span style="color:yellow;">ACM SIGSOFT Distinguished Paper Awards</span></font>荣誉</i></h2>
+        <div class="sixaward"><i>ICSE 2018, ICSE 2021, ASE 2022, ICSE 2023, ASE 2023, FSE 2024</i></div>
       </div>
-      <div class="sixaward">ICSE 2018, ICSE 2021, ASE 2022, ICSE 2023, ASE 2023, FSE 2024</div>
       <!-- <div class="trophy"></div> -->
       <!-- </div> -->
     </div>
@@ -44,7 +44,7 @@
         <a href="/" class="explore-link">EXPLORE ➤</a>
       </div>
       <div class="right-image">
-        <img src="../../src/assets/CVEdata.png" alt="Description">
+        <img src="../../src/assets/CVE_DATA.png" alt="Description" width=97% height=97%>
       </div>
       <div class="empty"></div>
     </div>
@@ -68,10 +68,10 @@
         <h1>HarmonyFlow</h1>
         <p>基于Panda IR的静态分析框架HarmonyFlow。该框架包括了指针分析和数据依赖分析两大核心模块，通过构建调用图和数据依赖图，帮助开发者更好地理解程序结构、优化性能以及识别安全漏洞，助力鸿蒙系统安全生态建设。
         </p>
-        <a href="http://harmonyflow.sctruster.com:8080/" class="explore-link">EXPLORE ➤</a>
+        <a href="http://119.29.73.177:5555/sctruster" class="explore-link">EXPLORE ➤</a>
       </div>
       <div class="right-image">
-        <img src="../../src/assets/HarmonyFlow.png" alt="Description">
+        <img src="../../src/assets/HarmonyFlow.png" alt="Description" width=95% height=95%>
       </div>
       <div class="empty"></div>
     </div>
@@ -79,7 +79,7 @@
     <div class="container">
       <div class="empty"></div>
       <div class="left-image">
-        <img src="../../src/assets/CFLinker.png" alt="Description">
+        <img src="../../src/assets/CFLinker.png" alt="Description" width=88% height=88%>
       </div>
       <div class="right-content">
         <h1>CFLinker</h1>
@@ -98,7 +98,7 @@
         <a href="http://vulstotal.com" class="explore-link">EXPLORE ➤</a>
       </div>
       <div class="right-image">
-        <img src="../../src/assets/VulsTotal.png" alt="Description">
+        <img src="../../src/assets/VulsTotal.png" alt="Description" width=95% height=95%>
       </div>
       <div class="empty"></div>
     </div>
@@ -106,7 +106,7 @@
     <div class="container">
       <div class="empty"></div>
       <div class="left-image">
-        <img src="../../src/assets/SCA.png" alt="Description">
+        <img src="../../src/assets/SCA.png" alt="Description" width=95% height=95%>
       </div>
       <div class="right-content">
         <h1>探巡SCA</h1>
@@ -150,7 +150,7 @@ export default {
   display: flex;
   flex-direction: column;
   /* 使内容从上到下排列 */
-  height: 400vh;
+
   /* 设置容器高度为视口高度 */
   justify-content: flex-start;
   /* 从顶部开始对齐内容 */
@@ -161,34 +161,44 @@ export default {
 .background {
   background-image: url("../../src/assets/bg.png");
   background-position: center;
+  /* 图片居中显示 */
+  background-repeat: no-repeat;
+  /* 不重复背景图片 */
   width: 100%;
-  height: 60%;
+  height: 500px;
+  /* 容器宽度 */
   display: flex;
   flex-direction: column;
   justify-content: center;
   /* 垂直居中内容 */
   align-items: center;
   /* 水平居中内容 */
+  color: white;
+  /* 字体颜色，可以根据需要调整 */
   font-family: "Poppins", sans-serif;
 }
 
 .title {
-  font-size: 8vw;
+  font-size: 120px;
+  /* 标题字体大小 */
   font-weight: bold;
-  margin-top: 4%;
-  color: #fffcbd;
-  /* background-image: linear-gradient(to right, rgb(132, 148, 90), rgb(60, 133, 92), rgb(18, 56, 95), rgb(60, 119, 133), rgb(132, 148, 90), rgb(60, 133, 92));
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; */
+  /* 加粗标题 */
+  margin-top: 70px;
+  
+  /* 标题和描述之间的间距 */
+  color: #2c3e50;
+  /* 或者可以使用其他颜色，比如 */
+  /* color: #e74c3c; */
 }
 
 .description {
-  font-size: 1.2vw;
-  width: 80%;
+  font-size: 23px;
+  width: 50%;
   font-weight: bold;
+  /* 描述字体大小 */
   text-align: center;
-  color: #ffffff;
+  /* 居中对齐描述文本 */
+  color: #252b3b;
 }
 
 /* .box {
@@ -203,27 +213,31 @@ export default {
 } */
 
 .awards {
-  font-size: 1vw;
-
-  /* width: 60%; */
+  font-size: 14px;
+  width: 90%;
   /* Wider to accommodate text */
-  /* height: 90%; */
+  height: 90%;
   /* Keep this consistent to maintain visual alignment */
-  /* display: flex; */
+  display: flex;
   flex-direction: column;
   /* Stack text vertically */
+  text-align: center;
   justify-content: center;
   /* Center text vertically */
-  /* padding: 2%; */
-  margin-top: 5%;
+  padding: 20px;
+  margin-top: -20px;
 }
 
 .sixaward {
-  font-size: 1vw;
-  /* margin-top: 2%; */
-  color: #fffcbd;
-  font-weight: bold;
-  justify-content: center;
+  font-size: 14px;
+  /* 标题字体大小 */
+  /* font-weight: bold; */
+  /* 加粗标题 */
+  margin-top: 30px;
+  /* margin-bottom: 50px; */
+  /* 标题和描述之间的间距 */
+  /* 或者可以使用其他颜色，比如 */
+  /* color: #e74c3c; */
 }
 
 .trophy {
@@ -243,8 +257,8 @@ export default {
 .large-box {
   width: 50%;
   height: 10%;
-  margin-top: 5%;
-  margin-bottom: 5%;
+  margin-top: 2%;
+  margin-bottom: 2%;
   display: flex;
   flex-direction: column;
   align-items: center;
