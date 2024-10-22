@@ -61,7 +61,7 @@ export default {
 }
 
 .page-footer {
-  font-size: 13px;
+  font-size: 1vw;
   position: relative;
   bottom: 0;
   width: 100%;
@@ -73,7 +73,7 @@ export default {
     #c1cee1,
     #b2cbe9
   );
-  font-size: 13px;
+  font-size: 1vw;
   color: white;
   text-align: center;
 }

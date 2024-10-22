@@ -2,11 +2,11 @@
   <div class="contents">
     <div class="background">
       <div class="title">SCTruster</div>
-      <div class="description">可信软件供应链治理平台提供了面向多种业务场景的软件供应链漏洞检测、验证、修复、攻防等全栈式安全防护示例。
+      <div class="description"><p>可信软件供应链治理平台提供了面向多种业务场景的软件供应链漏洞</p><p>检测、验证、修复、攻防等全栈式安全防护示例。</p>
       </div>
       <!-- <div class="box"> -->
       <div class="awards">
-        <h2><i>软件供应链安全研究工作共计<font style="font-size:35px"><span style="color:yellow;">6次</span></font>获得CCF-A类国际顶级会议的<font style="font-size:30px"><span style="color:yellow;">ACM SIGSOFT Distinguished Paper Awards</span></font>荣誉</i></h2>
+        <h2><i>软件供应链安全研究工作共计<font style="font-size:1.6vw"><span style="color:yellow;">6次</span></font>获得CCF-A类国际顶级会议的<font style="font-size:1.6vw"><span style="color:yellow;">ACM SIGSOFT Distinguished Paper Awards</span></font>荣誉</i></h2>
         <div class="sixaward"><i>ICSE 2018, ICSE 2021, ASE 2022, ICSE 2023, ASE 2023, FSE 2024</i></div>
       </div>
       <!-- <div class="trophy"></div> -->
@@ -161,39 +161,34 @@ export default {
 .background {
   background-image: url("../../src/assets/bg.png");
   background-position: center;
-  /* 图片居中显示 */
-  background-repeat: no-repeat;
-  /* 不重复背景图片 */
-  width: 100%;
-  height: 500px;
-  /* 容器宽度 */
+  background-size: cover; /* 确保背景图覆盖整个容器 */
+  background-repeat: no-repeat; /* 防止重复 */
+  width: 100%; /* 让宽度填满容器 */
+  height: auto; /* 高度自动适应内容 */
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* 垂直居中内容 */
   align-items: center;
-  /* 水平居中内容 */
   color: white;
-  /* 字体颜色，可以根据需要调整 */
   font-family: "Poppins", sans-serif;
 }
 
+
 .title {
-  font-size: 120px;
+  font-size: 9vw;
   /* 标题字体大小 */
   font-weight: bold;
   /* 加粗标题 */
-  margin-top: 70px;
+  margin-top: 1vw;
   
-  /* 标题和描述之间的间距 */
+  /* 标题和顶端之间的间距 */
   color: #2c3e50;
   /* 或者可以使用其他颜色，比如 */
   /* color: #e74c3c; */
 }
 
 .description {
-  font-size: 23px;
-  width: 50%;
+  font-size: 1.5vw;
   font-weight: bold;
   /* 描述字体大小 */
   text-align: center;
@@ -213,31 +208,25 @@ export default {
 } */
 
 .awards {
-  font-size: 14px;
+  font-size: 0.8vw; 
   width: 90%;
-  /* Wider to accommodate text */
-  height: 90%;
-  /* Keep this consistent to maintain visual alignment */
+  height: auto; 
   display: flex;
   flex-direction: column;
-  /* Stack text vertically */
   text-align: center;
-  justify-content: center;
-  /* Center text vertically */
-  padding: 20px;
-  margin-top: -20px;
+  justify-content: center; 
+  align-items: center; 
+  margin-bottom: 0; /* 设置为 0 或适当的小值 */
 }
 
+
+
 .sixaward {
-  font-size: 14px;
+  font-size: 0.8vw;
   /* 标题字体大小 */
-  /* font-weight: bold; */
-  /* 加粗标题 */
-  margin-top: 30px;
-  /* margin-bottom: 50px; */
+  margin-top: 0; /* 设置为 0 或适当的小值 */
+  margin-bottom: 1vw;
   /* 标题和描述之间的间距 */
-  /* 或者可以使用其他颜色，比如 */
-  /* color: #e74c3c; */
 }
 
 .trophy {

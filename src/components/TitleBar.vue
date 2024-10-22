@@ -65,8 +65,9 @@ export default {
 }
 
 .logo {
-  width: 20%;
-  height: 5%;
+  width: 17vw;
+  height: 6vw;
+  margin-bottom: 1.1vw;
   /* margin-right: 50px; */
   /* 给图片添加右边距，让下拉框离图片有一定距离 */
 }
@@ -76,7 +77,7 @@ export default {
   position: relative;
   font-size: 1vw;
   width: 9%;
-  height: 48px;
+  height: 4.8vw;
   color: rgb(0, 0, 0);
   /* border: 1px solid black; */
   /* border: 1px solid black; */
@@ -86,11 +87,11 @@ export default {
   margin-right: 3%;
   text-align: center;
   /* 文本居中 */
-  line-height: 40px;
+  line-height: 3.0vw;
   /* 使文本垂直居中 */
   /* padding-right: 1%; */
   /* 留出倒三角的空间 */
-  margin-top: 30px;
+  margin-top: 1.5vw;
 }
 
 .option:hover {
@@ -102,13 +103,13 @@ export default {
 /* after伪元素，添加小三角形 */
 .option::after {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 1.2vw;
+  right: 1vw;
   content: "";
-  width: 5px;
-  height: 5px;
-  border-right: 2px solid #4696ff;
-  border-bottom: 2px solid #4696ff;
+  width: 0.3vw;
+  height: 0.3vw;
+  border-right: 0.2vw solid #4696ff;
+  border-bottom: 0.2vw solid #4696ff;
   transform: rotate(45deg);
   transition: all 0.4s;
 }
@@ -127,7 +128,7 @@ export default {
   /* border: 1px solid black; */
   background-color: rgb(244, 248, 255);
   z-index: 1;
-  font-size: 14px;
+  font-size: 0.9vw;
   /* border-radius: 10px; */
 }
 
